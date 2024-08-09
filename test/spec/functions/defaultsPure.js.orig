@@ -74,16 +74,3 @@ it('should not touch keys order', function() {
 
   expect(expectedKeys).toEqual(actualKeys);
 });
-
-it('does not pollute the prototype', () => {
-  var payload = JSON.parse('{"__proto__": {"polluted": "vulnerable to PP"}}');
-  var subject = {};
-
-  expect(subject.polluted).toBe(undefined);
-
-  const out = defaults({}, payload);
-
-  expect(out).toEqual({});
-
-  expect({}.polluted).toBe(undefined);
-});
